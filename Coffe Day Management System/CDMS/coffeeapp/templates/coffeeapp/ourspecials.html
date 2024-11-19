@@ -1,0 +1,42 @@
+{% extends "coffeeapp/home.html" %}
+{% load static %}  <!-- Load the static template tag -->
+
+{% block title %}Our Specials - Coffee Shop{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin: 60px auto;">
+        <h1 class="text-center mb-4">Our Specials</h1>
+        <div class="row">
+            <!-- Special 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <img src="{% static 'images/specialcoffee.png' %}" class="card-img-top" alt="Special 1" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special Coffee</h5>
+                        <p class="card-text">A rich and creamy blend of coffee with a hint of vanilla and caramel.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Special 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <img src="{% static 'images/pastry.jpg' %}" class="card-img-top" alt="Special 2" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Delicious Pastry</h5>
+                        <p class="card-text">Flaky and buttery pastry filled with seasonal fruits and cream.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Special 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <img src="{% static 'images/sandwichh.jpg' %}" class="card-img-top" alt="Special 3" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Gourmet Sandwich</h5>
+                        <p class="card-text">A delicious sandwich made with fresh ingredients and served with a side of chips.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

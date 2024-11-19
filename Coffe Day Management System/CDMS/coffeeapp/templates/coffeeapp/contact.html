@@ -1,0 +1,118 @@
+{% extends "coffeeapp/home.html" %}
+{% load static %}
+{% block title %}Contact Us - Coffee Shop{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-image: url("{% static 'images/bck.jpg' %}");
+            background-size: cover;
+            background-attachment: fixed;
+            backdrop-filter: blur(2px);
+        }
+
+        .contact-container {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            margin: 80px auto;
+        }
+
+        .form-control {
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border-color: #9315156f;
+            box-shadow: 0 0 5px rgb(85, 46, 5);
+        }
+
+        .btn-primary {
+            background-color: rgba(103, 48, 10, 0.7);
+            border-color: rgba(87, 42, 9, 0.7);
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 25px;
+            color: white;
+            display: block; /* Display as block to center using margin */
+            margin: 20px auto;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(139, 69, 19, 0.7);
+            border-color: rgba(139, 69, 19, 0.7);
+        }
+
+        .form-group label {
+            color: #333; /* Darker color for the labels */
+            font-weight: bold;
+        }
+
+        .text-center {
+            text-align: center;
+            font-size: 27px;
+        }
+    </style>
+
+    <div class="contact-container">
+        <h1 class="text-center">Contact Us</h1>
+        <form method="post" action="{% url 'saveenquiry' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var formData = new FormData(this);
+
+            fetch("{% url 'contact' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Thank you for your message.");
+                this.reset(); // Reset the form after submission
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+    {% if message %}
+        <script>
+            alert("{{ message }}");
+        </script>
+    {% endif %}
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            // Allow the form to submit normally and reload the page
+        });
+    </script>
+{% endblock %}

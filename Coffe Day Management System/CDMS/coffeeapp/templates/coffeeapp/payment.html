@@ -1,0 +1,123 @@
+{% extends 'coffeeapp/home.html' %}
+
+{% block content %}
+<style>
+    /* CSS for payment page */
+    body {
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/966/578/506/table-board-coffee-hot-couples-hd-wallpaper-preview.jpg'); /* Replace with your image path */
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: darken; /* Adds a darkened effect to blend with background */
+        color: white; /* Text color for better contrast */
+        text-align: center; /* Center align text */
+        padding: 50px; /* Padding around content */
+    }
+
+    table {
+        width: 50%; /* Adjust width as needed */
+        margin: 20px auto; /* Center align table */
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid white; /* White borders for table */
+        padding: 10px; /* Padding inside table cells */
+    }
+
+    img {
+        width: 50px; /* Adjust image size */
+        height: auto;
+        margin: 10px; /* Spacing around images */
+    }
+
+    #payment-options {
+        display: flex;
+        justify-content: center; /* Center align payment options */
+        margin-bottom: 20px;
+    }
+
+    label {
+        margin: 0 10px; /* Adjust spacing between payment options */
+    }
+
+    button {
+        background-color: #4CAF50; /* Green background color for button */
+        color: white; /* White text color */
+        border: none;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    button:disabled {
+        background-color: #CCCCCC; /* Light gray for disabled state */
+        cursor: not-allowed;
+    }
+</style>
+
+<h1>Order Summary</h1>
+
+<table>
+    <tr>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price|floatformat:2 }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.total_price|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No items in cart.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Total Price: ${{ total_price|floatformat:2 }}</h2>
+
+<h2>Select Payment Option</h2>
+<div id="payment-options">
+    <label>
+        <input type="radio" name="payment_option" value="phonepe" required>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv7C7cl9ufztQRxoH-y_biXvwoAf5bynbtnA&s" alt="PhonePe">
+    </label>
+    <label>
+        <input type="radio" name="payment_option" value="googlepay" required>
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-pay-icon.png" alt="Google Pay">
+    </label>
+    <label>
+        <input type="radio" name="payment_option" value="cash" required>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG08AuBLvhYaFu6VdWl0V0hVGw3jaoqK2Mqw&s" alt="Cash on Delivery">
+    </label>
+</div>
+
+<form method="post" action="{% url 'order_confirmed' %}">
+    {% csrf_token %}
+    <button type="submit" id="pay-now-button" disabled>Pay Now</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const paymentOptions = document.querySelectorAll('input[name="payment_option"]');
+        const payNowButton = document.getElementById('pay-now-button');
+
+        paymentOptions.forEach(option => {
+            option.addEventListener('change', function() {
+                payNowButton.disabled = false;
+            });
+        });
+    });
+</script>
+{% endblock %}

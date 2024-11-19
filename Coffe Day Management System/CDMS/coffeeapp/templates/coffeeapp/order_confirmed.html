@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* CSS for order confirmed page */
+        body {
+            background-color: #4CAF50; /* Full green screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif; /* Use any preferred font */
+            color: #ffffff; /* White text color */
+        }
+
+        .circle-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .circle-animation {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #ffffff; /* White circle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            animation: pop-in-out 2s ease-in-out infinite;
+        }
+
+        @keyframes pop-in-out {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            z-index: 1; /* Ensure it's above other content */
+        }
+
+        .checkmark-svg {
+            width: 50px;
+            height: 50px;
+            fill: none; /* No fill initially */
+            stroke: #4CAF50; /* Green stroke color */
+            stroke-width: 3; /* Stroke width */
+            stroke-dasharray: 70; /* Length of the path */
+            stroke-dashoffset: 70; /* Hide initially */
+            animation: draw-checkmark 0.6s ease-out 2s forwards;
+        }
+
+        @keyframes draw-checkmark {
+            0% {
+                stroke-dashoffset: 70; /* Start of the path */
+            }
+            100% {
+                stroke-dashoffset: 0; /* End of the path */
+            }
+        }
+
+        p {
+            margin-top: 300px; /* Adjust margin as needed */
+            font-size: 24px;
+            text-align: center;
+            opacity: 0;
+            animation: fade-in 1s ease-in-out 3s forwards;
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        button {
+            background-color: #ffffff; /* White background */
+            color: #4CAF50; /* Green text color */
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+
+        .button:hover {
+            background-color: #f1f1f1; /* Light gray background on hover */
+            color: #333; /* Darker text color on hover */
+        }
+
+        .links {
+            position: absolute;
+            top: 20px; /* Position the download button at the bottom-left */
+            left: 20px; /* Space from the left */
+            opacity: 0;
+            animation: fade-in 1s ease-in-out 4s forwards;
+        }
+
+        .back-to-products {
+            position: absolute;
+            top: 20px; /* Position the back button at the top-right */
+            right: 20px; /* Space from the right */
+            opacity: 0;
+            animation: fade-in 1s ease-in-out 4s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle-container">
+        <div class="circle-animation">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" stroke="#4CAF50" stroke-width="2"/>
+                <path class="checkmark-check checkmark-svg" fill="none" d="M14 27 22 35 39 16"/>
+            </svg>
+        </div>
+    </div>
+
+    <p>Your order has been confirmed. Thank you for order with us!<br>Have a great day </p>
+    <div class="links">
+        <form method="get" action="{% url 'generate_bill_pdf' %}">
+            <button type="submit" class="button">Download Bill (PDF)</button>
+        </form>
+    </div>
+    <div class="back-to-products">
+        <form method="get" action="{% url 'products' %}">
+            <button type="submit" class="button">Back to Products</button>
+        </form>
+    </div>
+</body>
+</html>

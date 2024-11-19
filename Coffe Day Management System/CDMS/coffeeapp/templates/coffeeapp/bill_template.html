@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill - The Heaven Cafe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            text-align: center;
+        }
+        .address, .contact-details {
+            text-align: center;
+            margin: 0;
+        }
+        hr {
+            margin: 20px 0;
+        }
+        .bill-info {
+            text-align: left;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Heaven Cafe</h1>
+        <p class="address">#019 Harishchandra Ghat, opposite to heaven, Empty Fire road, Naraka-09345</p>
+        <p class="contact-details">Contact: 9587431856, 852074109</p>
+    </header>
+    <hr>
+    <div class="bill-info">
+        <p>ID Number: {{ bill_id }}</p>
+        <p>Date: {{ current_date }}</p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Sl No</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.price|mul:item.quantity }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3" style="text-align:right;"><strong>Sub Total</strong></td>
+                <td>${{ total_price }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer">
+        <p>*If any queries contact to the number provided.</p>
+        <p>*Please provide your valuable feedback.</p>
+        <p>Thank you for visiting, Have a great day!</p>
+    </div>
+</body>
+</html>

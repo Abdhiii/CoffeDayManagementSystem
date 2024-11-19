@@ -1,0 +1,320 @@
+{% extends 'coffeeapp/home.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .edit-item-container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    body {
+        background: url('{% static "images/bck.jpg" %}') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .btn-save-changes, .btn-cancel {
+        background-color: #debd77;
+        color: white;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease-in-out;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .btn-save-changes:hover {
+        background-color: #886e21;
+    }
+
+    .btn-cancel {
+        background-color: #e6c267;
+        border: 1px solid #dc3545;
+        color: white;
+    }
+
+    .btn-cancel:hover {
+        background-color: #c4a55e;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .main-content {
+        flex: 1;
+    }
+
+    .footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .footer .footer-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .footer .footer-content div {
+        flex: 1;
+        margin: 10px;
+        max-width: 300px;
+    }
+
+    .footer img {
+        width: 50px;
+        height: 50px;
+        display: block;
+        margin: 0 auto 10px;
+    }
+
+    hr {
+        border: 1px solid #6F4E37;
+        margin: 40px 0;
+    }
+
+    .contact-footer {
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        font-size: 12px;
+    }
+</style>
+
+<div class="main-container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Coffee Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href='{% url 'home' %}'>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='{% url 'about' %}'>About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='{% url 'contact' %}'>Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='{% url 'ourspecials' %}'>Our Specials</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='{% url 'products' %}'>Products</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        {% block content %}
+        {% load static %}
+            <!-- Slider (Bootstrap Carousel example) -->
+            <section id="tranding">
+                <div class="container">
+                    <h3 class="text-center section-subheading">- Welcome to coffee heaven -</h3>
+                    <h1 class="text-center section-heading">The Cozy cup</h1>
+                </div>
+                <div class="container">
+                    <div class="swiper tranding-slider">
+                        <div class="swiper-wrapper">
+                            <!-- Slide-start -->
+                            <div class="swiper-slide tranding-slide">
+                                <div class="tranding-slide-img">
+                                    <img src="{% static 'images/donutss.jpg' %}" alt="Tranding">
+                                </div>
+                                <div class="tranding-slide-content">
+                                    <h1 class="food-price">$20</h1>
+                                    <div class="tranding-slide-content-bottom">
+                                        <h2 class="food-name">
+                                            Donuts
+                                        </h2>
+                                        <h3 class="food-rating">
+                                            <span>4.5</span>
+                                            <div class="rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide-end -->
+                            <!-- Slide-start -->
+                            <div class="swiper-slide tranding-slide">
+                                <div class="tranding-slide-img">
+                                    <img src="{% static 'images/cappuccino.webp' %}" alt="Tranding">
+                                </div>
+                                <div class="tranding-slide-content">
+                                    <h1 class="food-price">$20</h1>
+                                    <div class="tranding-slide-content-bottom">
+                                        <h2 class="food-name">
+                                            Cappuccino
+                                        </h2>
+                                        <h3 class="food-rating">
+                                            <span>4.5</span>
+                                            <div class="rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide-end -->
+                            <!-- Slide-start -->
+                            <div class="swiper-slide tranding-slide">
+                                <div class="tranding-slide-img">
+                                    <img src="{% static 'images/burgur.avif' %}" alt="Tranding">
+                                </div>
+                                <div class="tranding-slide-content">
+                                    <h1 class="food-price">$40</h1>
+                                    <div class="tranding-slide-content-bottom">
+                                        <h2 class="food-name">
+                                            Burger
+                                        </h2>
+                                        <h3 class="food-rating">
+                                            <span>4.5</span>
+                                            <div class="rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide-end -->
+                            <!-- Slide-start -->
+                            <div class="swiper-slide tranding-slide">
+                                <div class="tranding-slide-img">
+                                    <img src="{% static 'images/americano.webp' %}" alt="Tranding">
+                                </div>
+                                <div class="tranding-slide-content">
+                                    <h1 class="food-price">$15</h1>
+                                    <div class="tranding-slide-content-bottom">
+                                        <h2 class="food-name">
+                                            Americano
+                                        </h2>
+                                        <h3 class="food-rating">
+                                            <span>4.5</span>
+                                            <div class="rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide-end -->
+                            <!-- Slide-start -->
+                            <div class="swiper-slide tranding-slide">
+                                <div class="tranding-slide-img">
+                                    <img src="{% static 'images/caramel.avif' %}" alt="Tranding">
+                                </div>
+                                <div class="tranding-slide-content">
+                                    <h1 class="food-price">$15</h1>
+                                    <div class="tranding-slide-content-bottom">
+                                        <h2 class="food-name">
+                                            Caramel Macchiato
+                                        </h2>
+                                        <h3 class="food-rating">
+                                            <span>4.5</span>
+                                            <div class="rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide-end -->
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trending Food End -->
+
+            <div class="edit-item-container">
+                <h1>Edit Item</h1>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn-save-changes">Save Changes</button>
+                    <a href="{% url 'cart' %}" class="btn-cancel">Cancel</a>
+                </form>
+            </div>
+
+        {% endblock %}
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>About Us</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div>
+                <h3>Contact Information</h3>
+                <ul>
+                    <li>Address: 123 Coffee St, Coffee City, CA 12345</li>
+                    <li>Phone: (123) 456-7890</li>
+                    <li>Email: info@coffeeshop.com</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <ul class="social-media">
+                    <li><a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a></li>
+                    <li><a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a></li>
+                    <li><a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contact-footer">
+            <p>&copy; 2023 Coffee Shop. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+{% endblock %}

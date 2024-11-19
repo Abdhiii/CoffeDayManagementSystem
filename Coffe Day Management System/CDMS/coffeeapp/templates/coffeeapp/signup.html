@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title>Sign Up</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{% static "images/img2.jpeg" %}');
+            background-size: cover; 
+            background-image: url('https://cdn.shopify.com/s/files/1/0918/3414/files/coffee-dinner.jpg?v=1507216222');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+          }
+          .menu-section {
+            width: 48%;
+          }
+          .order-section {
+            width: 48%;
+          }
+        .signup-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .signup-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: white;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            border: none;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            outline: none;
+        }
+        button {
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container"> 
+    <div class="menu-section">
+        <h1>Coffee Day</h1>
+        <h3>Refresh the mind!</h3><p style="font-family:Cursive">Personalize your orders to suit your taste and dietary preferences with ease.<p>
+    </div>
+    <div class="order-section">
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Sign Up</button>
+            <p><a href="{% url 'login' %}">Already have an account?</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

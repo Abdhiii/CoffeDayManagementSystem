@@ -1,0 +1,35 @@
+{% extends "coffeeapp/home.html" %}
+{% load static %}
+{% block title %}About Us - Coffee Shop{% endblock %}
+
+{% block content %}
+    <div style="background-color: #fdf2e9; padding: 60px;">
+        <div style="max-width: 1200px; margin: auto; text-align: center; position: relative;">
+            <div style="position: relative;">
+                <img src="{% static 'images/aboutbck.jpg' %}" alt="About Us Image" style="width: 100%; height: auto; border-radius: 10px;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); max-width: 80%; text-align: center;">
+                    <h1 style="font-size: 48px; font-weight: bold; margin: 0;">nice to meet you</h1>
+                    <p style="font-size: 18px; margin: 20px 0;">
+                        Welcome to Coffee Day, where our passion for exceptional coffee drives us to deliver the finest brews to our cherished community. Established with a love for coffee culture and a commitment to quality, we source our beans from the best plantations worldwide, ensuring every cup is a perfect blend of flavor and aroma. At Coffee Day, we believe in creating a cozy atmosphere where friends can gather, stories can be shared, and every sip is an experience to savor. Join us in celebrating the art of coffee, one cup at a time.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 40px; text-align: center; background-color: #1a1a1a; padding: 20px; color: white;">
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="margin: 10px;">
+                    <p>Free shipping</p>
+                </div>
+                <div style="margin: 10px;">
+                    <p>Members-only perks</p>
+                </div>
+                <div style="margin: 10px;">
+                    <p>20% off every order</p>
+                </div>
+                <div style="margin: 10px;">
+                    <p>Custom plans</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

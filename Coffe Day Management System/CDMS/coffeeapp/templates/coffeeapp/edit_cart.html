@@ -1,0 +1,13 @@
+{% extends 'coffeeapp/home.html' %}
+
+{% block content %}
+<h1>Edit Item</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+</form>
+
+<a href="{% url 'cart' %}">Back to Cart</a>
+{% endblock %}

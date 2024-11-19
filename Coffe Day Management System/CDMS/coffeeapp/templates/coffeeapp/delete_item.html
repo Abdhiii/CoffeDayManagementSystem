@@ -1,0 +1,14 @@
+{% extends 'coffeeapp/home.html' %}
+
+{% block content %}
+<h1>Delete Item</h1>
+
+<p>Are you sure you want to delete the item "{{ item.name }}" with price {{ item.price }}?</p>
+
+<form method="post" action="{% url 'delete_item' item.id %}">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>
+
+<a href="{% url 'cart' %}">No, go back to Cart</a>
+{% endblock %}

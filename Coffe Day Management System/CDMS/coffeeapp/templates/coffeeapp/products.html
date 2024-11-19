@@ -1,0 +1,151 @@
+{% extends "coffeeapp/home.html" %}
+
+{% load static %}
+
+{% block title %}Products - Coffee Shop{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin: 60px auto;">
+        <h1 class="text-center mb-4">Our Products</h1>
+        <div class="row">
+            <!-- Product 1 -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                  <img src="{% static 'images/latte.jpg' %}" class="card-img-top" alt="Coffee 1" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h4 class='card-name'>Latte</h4>
+                        <h5 class="card-title">$5.00</h5>
+                        <form method="post" action="{% url 'products' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="Latte">
+                            <input type="hidden" name="price" value="5.00">
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                        </form>
+                        <!--<button class="btn btn-primary" onclick="location.href='{% url 'cart' %}'">Order Now</button>-->
+                    </div>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/cappuuccino.jpg' %}" class="card-img-top" alt="Coffee 2" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h4 class='card-name'>Cappuccino</h4>
+                        <h5 class="card-title">$4.50</h5>
+                        <form method="post" action="{% url 'products' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="Cappuccino">
+                            <input type="hidden" name="price" value="4.50">
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                        </form>
+                        <!--<button class="btn btn-primary">Order Now</button>-->
+                    </div>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/sandwich.jpg' %}" class="card-img-top" alt="Coke" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h4 class='card-name'>Sandwich</h4>
+                        <h5 class="card-title">$2.50</h5>
+                        <form method="post" action="{% url 'products' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="Sandwich">
+                            <input type="hidden" name="price" value="2.50">
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                        </form>
+                        <!--<button class="btn btn-primary">Order Now</button>-->
+                    </div>
+                </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/espresso.jpg' %}" class="card-img-top" alt="Coffee 3"  style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h4 class='card-name'>Espresso</h4>
+                        <h5 class="card-title">$6.00</h5>
+                        <form method="post" action="{% url 'products' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="Espresso">
+                            <input type="hidden" name="price" value="6.00">
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                        </form>
+                        <!--<button class="btn btn-primary">Order Now</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Product 5 -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/icedcoffee.jpg' %}" class="card-img-top img-fluid rounded" alt="Coffee 4" style="height: 250px; object-fit: cover;">>
+                    <div class="card-body text-center">
+                        <h4 class="card-name">Iced Coffee</h4>
+                        <h5 class="card-title">$5.50</h5>
+                        <form method="post" action="{% url 'products' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="Iced Coffee">
+                            <input type="hidden" name="price" value="5.50">
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                        </form>
+                        <!--<button class="btn btn-primary">Order Now</button>-->
+                    </div>
+                </div>
+            </div>
+            <!-- Product 6 -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/bagels.avif' %}" class="card-img-top img-fluid rounded" alt="Latte" style="height: 250px; object-fit: cover;">>
+                    <div class="card-body text-center">
+                        <h4 class="card-name">Bagels</h4>
+                        <h5 class="card-title">$4.75</h5>
+                        <form method="post" action="{% url 'products' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="Bagels">
+                            <input type="hidden" name="price" value="4.75">
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                        </form>
+                        <!--<button class="btn btn-primary">Order Now</button>-->
+                    </div>
+                </div>
+            </div>
+            <!-- Product 7 -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/croissants.avif' %}" class="card-img-top" alt="Espresso" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-name">Croissant</h4>
+                        <h5 class="card-title">$3.00</h5>
+                        <form method="post" action="{% url 'products' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="Croissant">
+                            <input type="hidden" name="price" value="3.00">
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                        </form>
+                        <!--<button class="btn btn-primary">Order Now</button>-->
+                    </div>
+                </div>
+            </div>
+            <!-- Product 8 -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/pizza.avif' %}" class="card-img-top" alt="Coffee 5" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-name">Breakfast Pizza</h4>
+                        <h5 class="card-title">$6.50</h5>
+                        <form method="post" action="{% url 'products' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="Breakfast Pizza">
+                            <input type="hidden" name="price" value="6.50">
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

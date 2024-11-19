@@ -1,0 +1,117 @@
+{% extends "coffeeapp/home.html" %}
+
+{% block title %}Cart - Coffee Shop{% endblock %}
+{% load custom_filters %}
+
+{% block content %}
+    <div class="container" style="margin: 60px auto;">
+        <h1 class="text-center mb-4">Shopping Cart</h1>
+        <div class="top-right">
+            <a href="{% url 'products' %}">Back to Products</a>
+        </div>
+        <form method="post" action="{% url 'cart' %}">
+            {% csrf_token %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>${{ item.price }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price|mul:item.quantity }}</td>
+                            <td>
+                                <a href="{% url 'edit_item' item.id %}">Edit</a>
+                                <form method="post" action="{% url 'delete_item' item.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">No items in cart.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div>
+                <h2>Total: ${{ total_price }}</h2>
+            </div>
+            <form method="post" action="{% url 'payment' %}">
+                {% csrf_token %}
+                <button type="submit" style="margin-top: 20px;">Pay Now</button>
+            </form>
+        </div>
+        
+        <style>
+            body {
+                background-image: url('https://img.freepik.com/free-photo/shopping-cart-black-background-with-copy-space_23-2148317906.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1721260800&semt=ais_user');
+                background-size: cover;
+                background-attachment: fixed;
+                position: relative;
+            }
+        
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(255, 255, 255, 0.5);
+                backdrop-filter: blur(5px);
+                z-index: -1;
+            }
+            .top-right {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+
+            .top-right a {
+                text-decoration: none;
+                color: #007bff;
+            }
+
+            .top-right a:hover {
+                text-decoration: underline;
+            }
+        
+            .container {
+                max-width: 800px;
+                margin: auto;
+                background-color: white;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                position: relative;
+                z-index: 1;
+            }
+        
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+        
+            th, td {
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+        
+            th {
+                background-color: #f2f2f2;
+            }
+        
+            .form-container {
+                margin-bottom: 20px;
+            }
+        </style>
+{% endblock %}
